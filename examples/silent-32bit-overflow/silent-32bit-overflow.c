@@ -112,10 +112,13 @@ void demo7() {
 
 
 int demo8() {
-  int about_to_terminate = 0100;  /* is this 100 ? */
-  int could_be_any_value = 0;
+    int about_to_terminate = 0100;  /* is this 100 ? */
+    int could_be_any_value = 0;
 
-  return about_to_terminate / could_be_any_value;
+    printf("%s\n", __func__);
+    printf("Dividing %d by %d ... \n", about_to_terminate, could_be_any_value);
+
+    return about_to_terminate / could_be_any_value;
 }
 
 
