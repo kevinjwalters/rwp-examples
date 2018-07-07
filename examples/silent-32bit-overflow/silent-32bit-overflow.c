@@ -1,5 +1,5 @@
 /*
- * silent-32bit-overflow.c v1.0
+ * silent-32bit-overflow.c v1.1
  *
  * Demonstration of simple C code where a variable holds a duration value
  * which is then increased in resolution but without due consideration
@@ -41,7 +41,7 @@ void demo2() {
 
     printf("%s\n", __func__);
     for (i=0; i < 5; i++) {
-        timer_ns += 500000000000;  /* add half a second */
+        timer_ns += 500000000;  /* add half a second */
         printf("timer_us=%d timer_us=%ld\n", timer_ns, timer_ns);
     } 
 }
@@ -52,7 +52,7 @@ void demo3() {
     int six_us = 6e6;
     int six_ns = six_us * 1000; /* no compiler warning - static tools may detect this */
     /* gcc 4.8.5 warning: overflow in implicit constant conversion [-Woverflow] */
-    /* int six_ns = 6000000000000; */
+    /* int six_ns = 6000000000; */
 
     printf("%s\n", __func__);
     timer_ns += six_ns;
@@ -87,7 +87,7 @@ void demo6() {
 
     printf("%s\n", __func__);
     for (i=0; i < 5; i++) {
-        timer_ns += 500000000000L; /* add half a second */
+        timer_ns += 500000000L; /* add half a second */
         printf("timer_ns=%ld\n", timer_ns);
     } 
 }
@@ -99,7 +99,7 @@ void demo7() {
     int rarecondition = 1;
 
     printf("%s\n", __func__);
-    timer_ns = 500000000000L;  /* set to half a second */
+    timer_ns = 500000000L;  /* set to half a second */
     localtimer += 2*1000*1000*1000; /* two seconds */
     localtimer += 2*1000*1000*1000; /* two more seconds */
     if (rarecondition) { 
